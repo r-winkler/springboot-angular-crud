@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {EmployeeService} from "./employee.service";
+import {IEmployee} from "./employee";
 
 @Component({
   selector: 'app-employee',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor() { }
+  employees: IEmployee[];
+  errorMessage: string;
+
+  constructor(private _employeeService: EmployeeService) { }
 
   ngOnInit() {
+    this._employeeService.getEmployees()
+        .subscribe(
+            employees => this.employees = employees,
+            error => this.errorMessage = <any>error);
   }
 
 }
