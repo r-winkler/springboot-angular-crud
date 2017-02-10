@@ -1,5 +1,20 @@
+=== Start
+
+ng serve: starts the frontend
+
+npm start: starts the frontend with proxy in order that a connection to the backend is possible.
+
 === H2 Console
 
 http://localhost:8080/h2-console
 
 (the default jdbc url is jdbc:h2:mem:testdb).
+
+=== InMemoryWebApiModule
+
+The InMemoryWebApiModule is enabled in the app.module.ts
+
+The InMemoryWebApiModule delivers a json string like 'data: {}'
+
+There is this strange data attribute. Therefore, when InMemoryWebApiModule is enabled, the response
+must handled with the extractData method in the employee.service.ts
