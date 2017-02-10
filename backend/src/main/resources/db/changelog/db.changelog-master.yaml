@@ -1,0 +1,100 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: rwinkler
+      changes:
+        - createTable:
+            tableName: employee
+            columns:
+              - column:
+                  name: id
+                  type: long
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: profession
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: age
+                  type: int
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: rwinkler
+      changes:
+        - insert:
+            tableName: employee
+            columns:
+              - column:
+                  name: first_name
+                  value: Renée
+              - column:
+                  name: last_name
+                  value: Winkler
+              - column:
+                  name: profession
+                  value: Software Engineer
+              - column:
+                  name: age
+                  value: 32
+        - insert:
+            tableName: employee
+            columns:
+              - column:
+                  name: first_name
+                  value: Max
+              - column:
+                  name: last_name
+                  value: Muster
+              - column:
+                  name: profession
+                  value: Chief Financial Officer
+              - column:
+                  name: age
+                  value: 45
+        - insert:
+            tableName: employee
+            columns:
+              - column:
+                  name: first_name
+                  value: Hanna
+              - column:
+                  name: last_name
+                  value: Miller
+              - column:
+                  name: profession
+                  value: Account Manager
+              - column:
+                  name: age
+                  value: 35
+        - insert:
+            tableName: employee
+            columns:
+              - column:
+                  name: first_name
+                  value: Fredy
+              - column:
+                  name: last_name
+                  value: Frog
+              - column:
+                  name: profession
+                  value: Soldier
+              - column:
+                  name: age
+                  value: 26
+
