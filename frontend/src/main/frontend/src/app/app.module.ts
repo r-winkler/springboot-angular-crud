@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
+//import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee/employee.component';
 import {EmployeeService} from "./employee/employee.service";
-import {EmployeeData} from "./employee/employee-data";
+//import {EmployeeData} from "./employee/employee-data";
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import {EmployeeData} from "./employee/employee-data";
     BrowserModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(EmployeeData),
+    //InMemoryWebApiModule.forRoot(EmployeeData),
   ],
   providers: [EmployeeService],
   bootstrap: [AppComponent]

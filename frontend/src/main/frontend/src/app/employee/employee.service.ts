@@ -11,7 +11,10 @@ import 'rxjs/add/observable/of';
 
 @Injectable()
 export class EmployeeService {
-    private _baseUrl = 'api/employees';
+    // for angular-in-memory-web-api (backend mocking)
+    // private _baseUrl = 'api/employees';
+
+    private _baseUrl = 'localhost:8080/api/employee';
 
     constructor(private _http: Http) {
     }
