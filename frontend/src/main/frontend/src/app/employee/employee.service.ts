@@ -11,16 +11,14 @@ import 'rxjs/add/observable/of';
 
 @Injectable()
 export class EmployeeService {
-    // for angular-in-memory-web-api (backend mocking)
-    // private _baseUrl = 'api/employees';
 
-    private _baseUrl = 'localhost:8080/api/employee';
+    private _baseUrl = 'api/employee';
 
     constructor(private _http: Http) {
     }
 
     getEmployees(): Observable<IEmployee[]> {
-        return this._http.get(this._baseUrl).map(this.extractData)
+        return this._http.get(this._baseUrl).map((response: Response) => <IEmployee[]>response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
@@ -89,8 +87,8 @@ export class EmployeeService {
     initializeEmployee(): IEmployee {
         return {
             id: 0,
-            firstname: null,
-            lastname: null,
+            firstName: null,
+            lastName: null,
             profession: null,
             age: null
         };

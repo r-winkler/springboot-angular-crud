@@ -4,36 +4,36 @@ import {IEmployee} from "./employee";
 export class EmployeeData implements InMemoryDbService {
 
     createDb() {
-        let employees: IEmployee[] = [
+        let employee: IEmployee[] = [
             {
                 "id": 1,
-                "firstname": "René",
-                "lastname": "Winkler",
+                "firstName": "René",
+                "lastName": "Winkler",
                 "profession": "Software Engineer",
                 "age": 32
             },
             {
                 "id": 2,
-                "firstname": "Max",
-                "lastname": "Muster",
+                "firstName": "Max",
+                "lastName": "Muster",
                 "profession": "Chief Financial Officer",
                 "age": 30
             },
             {
                 "id": 3,
-                "firstname": "Hanna",
-                "lastname": "Miller",
+                "firstName": "Hanna",
+                "lastName": "Miller",
                 "profession": "Account Manager",
                 "age": 35
             },
             {
                 "id": 4,
-                "firstname": "Fredy",
-                "lastname": "Frog",
+                "firstName": "Fredy",
+                "lastName": "Frog",
                 "profession": "Soldier",
                 "age": 59
             }
         ];
-        return {employees};
+        return {employee};
     }
 }
