@@ -15,10 +15,30 @@ export class EmployeeComponent implements OnInit {
   constructor(private _employeeService: EmployeeService) { }
 
   ngOnInit() {
+    this.getAllEmployees();
+  }
+
+  getAllEmployees() {
     this._employeeService.getEmployees()
         .subscribe(
             employees => this.employees = employees,
             error => this.errorMessage = <any>error);
+  }
+
+  deleteEmployee(id: number): void {
+    if (id === 0) {
+      // Don't delete, it was never saved.
+      this.onSaveComplete();
+    } else {
+      this._employeeService.deleteEmployee(id).subscribe(
+          () => this.onSaveComplete(),
+          (error: any) => this.errorMessage = <any>error
+      );
+    }
+  }
+
+  onSaveComplete(): void {
+    this.getAllEmployees();
   }
 
 }

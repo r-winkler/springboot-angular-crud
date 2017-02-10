@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {IEmployee} from "./employee";
-import {Http, Response} from "@angular/http";
+import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -33,7 +33,43 @@ export class EmployeeService {
         const url = `${this._baseUrl}/${id}`;
         return this._http.get(url)
             .map(this.extractData)
-            .do(data => console.log('getProduct: ' + JSON.stringify(data)))
+            .do(data => console.log('getEmployee: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    deleteEmployee(id: number): Observable<Response> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        const url = `${this._baseUrl}/${id}`;
+         return this._http.delete(url, options)
+            .do(data => console.log('deleteEmployee: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    saveEmployee(employee: IEmployee): Observable<IEmployee> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        if (employee.id === 0) {
+            return this.createEmployee(employee, options);
+        }
+        return this.updateEmployee(employee, options);
+    }
+
+    private createEmployee(employee: IEmployee, options: RequestOptions): Observable<IEmployee> {
+        employee.id = undefined;
+        return this._http.post(this._baseUrl, employee, options)
+            .map(this.extractData)
+            .do(data => console.log('createEmployee: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    private updateEmployee(employee: IEmployee, options: RequestOptions): Observable<IEmployee> {
+        const url = `${this._baseUrl}/${employee.id}`;
+        return this._http.put(url, employee, options)
+            .map(() => employee)
+            .do(data => console.log('updateEmployee: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -48,13 +84,12 @@ export class EmployeeService {
     }
 
     initializeEmployee(): IEmployee {
-        // Return an initialized object
         return {
             id: 0,
-            firstname: "",
-            lastname: "",
-            profession: "",
-            age: 0
+            firstname: null,
+            lastname: null,
+            profession: null,
+            age: null
         };
     }
 
