@@ -1,1 +1,3 @@
-See http://blog.jdriven.com/2016/12/angular2-spring-boot-getting-started/
+=== H2 Console
+
+http://localhost:8080/h2-console
