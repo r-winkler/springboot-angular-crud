@@ -2,6 +2,7 @@ package ch.renewinkler.demo_boot_angular;
 
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 public class Employee {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     @NotNull
