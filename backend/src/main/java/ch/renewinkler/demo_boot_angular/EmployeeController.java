@@ -33,6 +33,7 @@ public class EmployeeController {
     public Employee update(@PathVariable("id") Long id, @RequestBody Employee employee) {
         if (employee.getId() != id) {
             log.warn("Path id does not match entity id. Will not be updated.");
+            return employee;
         }
         return service.save(employee);
     }
@@ -41,6 +42,7 @@ public class EmployeeController {
     public Employee create(@RequestBody Employee employee) {
         if (employee.getId() != null) {
             log.warn("Entity already has id. Will not be persisted.");
+            return employee;
         }
         return service.save(employee);
     }

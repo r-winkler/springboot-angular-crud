@@ -52,7 +52,7 @@ export class EmployeeService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        if (employee.id === 0) {
+        if (employee.id === null) {
             return this.createEmployee(employee, options);
         }
         return this.updateEmployee(employee, options);
