@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class Employee {
@@ -31,5 +32,5 @@ public class Employee {
     private String profession;
 
     @NotNull
-    private int age;
+    private Integer age;
 }
