@@ -7,12 +7,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee/employee.component';
 import {EmployeeService} from "./employee/employee.service";
+import { NavbarComponent } from './navbar/navbar.component';
 //import {EmployeeData} from "./employee/employee-data";
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
