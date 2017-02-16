@@ -86,7 +86,7 @@ export class EmployeeService {
 
     initializeEmployee(): IEmployee {
         return {
-            id: 0,
+            id: null,
             firstName: null,
             lastName: null,
             profession: null,
