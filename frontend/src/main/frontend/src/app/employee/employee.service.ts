@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {IEmployee} from "./employee";
+import {IEmployee} from "./employee.model";
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/do';
