@@ -15,22 +15,32 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: first_name
-                  type: varchar(255)
+                  type: varchar(100)
                   constraints:
                     nullable: false
               - column:
                   name: last_name
-                  type: varchar(255)
+                  type: varchar(100)
                   constraints:
                     nullable: false
               - column:
                   name: profession
-                  type: varchar(255)
+                  type: varchar(100)
                   constraints:
                     nullable: false
               - column:
                   name: age
                   type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: full_time
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: language
+                  type: varchar(100)
                   constraints:
                     nullable: false
   - changeSet:
@@ -52,6 +62,12 @@ databaseChangeLog:
               - column:
                   name: age
                   value: 32
+              - column:
+                  name: full_time
+                  value: false
+              - column:
+                  name: language
+                  value: German
         - insert:
             tableName: employee
             columns:
@@ -67,6 +83,12 @@ databaseChangeLog:
               - column:
                   name: age
                   value: 45
+              - column:
+                  name: full_time
+                  value: true
+              - column:
+                  name: language
+                  value: English
         - insert:
             tableName: employee
             columns:
@@ -82,6 +104,12 @@ databaseChangeLog:
               - column:
                   name: age
                   value: 35
+              - column:
+                  name: full_time
+                  value: true
+              - column:
+                  name: language
+                  value: French
         - insert:
             tableName: employee
             columns:
@@ -97,4 +125,10 @@ databaseChangeLog:
               - column:
                   name: age
                   value: 26
+              - column:
+                  name: full_time
+                  value: false
+              - column:
+                  name: language
+                  value: Spanish
 

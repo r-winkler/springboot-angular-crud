@@ -47,9 +47,12 @@ public class EmployeeControllerTest {
 
     @Before
     public void init() throws JsonProcessingException {
-        employee1 = Employee.builder().id(1l).firstName("René").lastName("Winkler").age(32).profession("Software Engineer").build();
-        employee2 = Employee.builder().id(2l).firstName("Max").lastName("Muster").age(27).profession("Account Manager").build();
-        employee3 = Employee.builder().id(3l).firstName("Michael").lastName("Meister").age(35).profession("Product Owner").build();
+        employee1 = Employee.builder().id(1l).firstName("René").lastName("Winkler").age(32)
+                .profession("Software Engineer").fullTime(false).language("German").build();
+        employee2 = Employee.builder().id(2l).firstName("Max").lastName("Muster").age(27)
+                .profession("Account Manager").fullTime(true).language("English").build();
+        employee3 = Employee.builder().id(3l).firstName("Michael").lastName("Meister")
+                .age(35).profession("Product Owner").fullTime(true).language("Spanish").build();
 
         employees.add(employee1);
         employees.add(employee2);

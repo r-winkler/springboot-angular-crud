@@ -53,4 +53,20 @@ public class EmployeeAssert extends AbstractAssert<EmployeeAssert, Employee> {
         }
         return this;
     }
+
+    public EmployeeAssert isFulltime(boolean fulltime) {
+        isNotNull();
+        if (!Objects.equals(actual.getFullTime(), fulltime)) {
+            failWithMessage("Expected employee's fulltime to be <%s> but was <%s>", fulltime, actual.getFullTime());
+        }
+        return this;
+    }
+
+    public EmployeeAssert hasLanguage(String language) {
+        isNotNull();
+        if (!Objects.equals(actual.getLanguage(), language)) {
+            failWithMessage("Expected employee's language to be <%s> but was <%s>", language, actual.getLanguage());
+        }
+        return this;
+    }
 }

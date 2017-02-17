@@ -33,4 +33,10 @@ public class Employee {
 
     @NotNull
     private Integer age;
+
+    @NotNull
+    private Boolean fullTime;
+
+    @NotNull
+    private String language;
 }
