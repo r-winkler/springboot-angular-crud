@@ -4,10 +4,12 @@
   <thead>
     <tr>
       <th>Id</th>
-      <th>Firstname</th>
-      <th>Lastname</th>
+      <th>First name</th>
+      <th>Last name</th>
       <th>Age</th>
       <th>Profession</th>
+      <th>Full time</th>
+      <th>Language</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +19,8 @@
       <td>{{employee.lastName}}</td>
       <td>{{employee.age}}</td>
       <td>{{employee.profession}}</td>
+      <td>{{employee.fullTime}}</td>
+      <td>{{employee.language}}</td>
       <td>
         <button (click)=deleteEmployee(employee.id)>delete</button>
       </td>

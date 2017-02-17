@@ -4,4 +4,6 @@ export interface IEmployee {
     lastName: string;
     profession: string;
     age: number;
+    fullTime: boolean;
+    language: string;
 }

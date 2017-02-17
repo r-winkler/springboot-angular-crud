@@ -90,7 +90,9 @@ export class EmployeeService {
             firstName: null,
             lastName: null,
             profession: null,
-            age: null
+            age: null,
+            fullTime: null,
+            language: null
         };
     }
 
