@@ -1,4 +1,4 @@
-package ch.renewinkler.demo_boot_angular;
+package ch.renewinkler.demo_boot_angular.employee;
 
 import org.assertj.core.api.AbstractAssert;
 

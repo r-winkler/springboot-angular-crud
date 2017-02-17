@@ -1,4 +1,4 @@
-package ch.renewinkler.demo_boot_angular;
+package ch.renewinkler.demo_boot_angular.employee;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

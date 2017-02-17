@@ -1,4 +1,4 @@
-package ch.renewinkler.demo_boot_angular;
+package ch.renewinkler.demo_boot_angular.employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

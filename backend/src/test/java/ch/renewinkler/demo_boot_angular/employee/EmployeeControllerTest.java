@@ -1,6 +1,9 @@
-package ch.renewinkler.demo_boot_angular;
+package ch.renewinkler.demo_boot_angular.employee;
 
 
+import ch.renewinkler.demo_boot_angular.employee.Employee;
+import ch.renewinkler.demo_boot_angular.employee.EmployeeController;
+import ch.renewinkler.demo_boot_angular.employee.EmployeeService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;

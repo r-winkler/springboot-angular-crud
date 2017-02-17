@@ -1,5 +1,4 @@
-package ch.renewinkler.demo_boot_angular;
-
+package ch.renewinkler.demo_boot_angular.language;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,26 +15,11 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Employee {
+public class Language {
 
     @Id
     @GeneratedValue
     private Long id;
-
-    @NotNull
-    private String firstName;
-
-    @NotNull
-    private String lastName;
-
-    @NotNull
-    private String profession;
-
-    @NotNull
-    private Integer age;
-
-    @NotNull
-    private Boolean fullTime;
 
     @NotNull
     private String language;
