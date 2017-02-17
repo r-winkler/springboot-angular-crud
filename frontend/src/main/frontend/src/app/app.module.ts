@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 //import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 
@@ -12,6 +12,7 @@ import {ToastrService} from "./common/toastr.service";
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./routes";
 import { WelcomeComponent } from './welcome/welcome.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 //import {EmployeeData} from "./employee/employee-data";
 
 @NgModule({
@@ -19,11 +20,13 @@ import { WelcomeComponent } from './welcome/welcome.component';
     AppComponent,
     EmployeeComponent,
     NavbarComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    EmployeeDetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
     //InMemoryWebApiModule.forRoot(EmployeeData),

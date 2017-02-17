@@ -33,7 +33,7 @@ export class EmployeeService {
         };
         const url = `${this._baseUrl}/${id}`;
         return this._http.get(url)
-            .map(this.extractData)
+            .map((response: Response) => <IEmployee>response.json())
             .do(data => console.log('getEmployee: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
