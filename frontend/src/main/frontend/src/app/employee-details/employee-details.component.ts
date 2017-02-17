@@ -6,11 +6,13 @@ import {FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/form
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import {LanguageService} from "../common/language/language.service";
+import {Observable} from "rxjs";
+
 
 /* Custom Validator */
-function primaryLanguageValidator(c: AbstractControl): {[key: string]:boolean} | null {
+function languageValidator(c: AbstractControl): {[key: string]:boolean} | null {
   if(c.value === 'default') {
-    return { 'primaryLanguage': true}
+    return { 'language': true}
   };
   return null;
 };
@@ -28,32 +30,40 @@ export class EmployeeDetailsComponent implements OnInit {
     required: 'Firstname is required.',
     minlength: 'Firstname must be at least 3 characters.'
   };
-  model: IEmployee;
   employee: IEmployee;
-  errorMessage: string;
 
   constructor(private _employeeService: EmployeeService, private _route: ActivatedRoute, private fb: FormBuilder,
   private _languageService: LanguageService) { }
 
   ngOnInit() {
-    this._employeeService.getEmployee(this._route.snapshot.params['id'])
-      .subscribe(
-      employee => this.employee = employee,
-      error => this.errorMessage = <any>error);
-
-    this._languageService.getLanguages()
-      .subscribe(
-        languages => this.languages = languages,
-        error => this.errorMessage = <any>error);
-
 
     this.employeeForm = this.fb.group({
-      firstName: ['René', [Validators.required, Validators.minLength(3)]],
-      lastName: ['Winkler', Validators.required],
-      isFullTime: true,
-      paymentType: 'w2',
-      primaryLanguage: ['default', primaryLanguageValidator]
+      firstName: [, [Validators.required, Validators.minLength(3)]],
+      lastName: [, Validators.required],
+      age: [],
+      profession: [],
+      fullTime: [],
+      language: [, languageValidator]
     });
+
+    let languages = this._languageService.getLanguages();
+    let employee = this._employeeService.getEmployee(this._route.snapshot.params['id']);
+
+
+    Observable.zip(
+      languages,
+      employee,
+      (languages, employee) => {
+        this.languages = languages;
+        delete employee.id;
+        this.employee = employee;
+        const selectedLanguage = this.languages.find(language => language === this.employee.language);
+        this.employee.language = selectedLanguage;
+        this.employeeForm.setValue(this.employee);
+      }
+    ).subscribe(data => console.log("done"));
+
+
 
     const lastNameControl = this.employeeForm.get('lastName');
     lastNameControl.valueChanges.distinctUntilChanged().subscribe(value => this.lastNameToUpperCase(lastNameControl.value));

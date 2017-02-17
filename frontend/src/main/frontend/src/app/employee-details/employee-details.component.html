@@ -1,6 +1,7 @@
-<div class="container">
+<div *ngIf="employee" class="container">
   <h3>Employee Form</h3>
   <form (submit)="submitForm()" novalidate [formGroup]="employeeForm">
+
     <div class="form-group" [class.has-error]="firstNameMessage">
       <label for="firstNameId" class="control-label">First Name</label>
       <input id="firstNameId" type="text" class="form-control" placeholder="firstName" formControlName="firstName">
@@ -8,32 +9,36 @@
     <div *ngIf="firstNameMessage" class="alert alert-danger">
       {{firstNameMessage}}
     </div>
+
+
     <div class="form-group">
       <label for="lastNameId">Last Name</label>
       <input id="lastNameId" type="text" class="form-control" placeholder="lastName" formControlName="lastName">
     </div>
 
+
+    <div class="form-group">
+      <label for="ageId">Age</label>
+      <input id="ageId" type="number" class="form-control" placeholder="age" formControlName="age">
+    </div>
+
+
+    <div class="form-group">
+      <label for="professionId">Profession</label>
+      <input id="professionId" type="text" class="form-control" placeholder="profession" formControlName="profession">
+    </div>
+
+
     <div class="checkbox">
       <label>
-        <input type="checkbox" formControlName="isFullTime"> Full Time Employee
+        <input type="checkbox" formControlName="fullTime"> Full Time Employee
       </label>
     </div>
 
-    <label>Payment Type</label>
-    <div class="radio">
-      <label>
-        <input type="radio" value="w2" checked formControlName="paymentType"> W2
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio" value="1099" formControlName="paymentType"> 1099
-      </label>
-    </div>
 
-    <div class="form-group" [class.has-error]="hasPrimaryLanguageError">
-      <label class="control-label" for="languageId">Primary Language</label>
-      <select id="languageId" class="form-control" formControlName="primaryLanguage">
+    <div class="form-group" [class.has-error]="hasLanguageError">
+      <label class="control-label" for="languageId">Language</label>
+      <select id="languageId" class="form-control" formControlName="language">
         <option value="default">Select a language...</option>
         <option *ngFor="let lang of languages">
           {{lang}}
