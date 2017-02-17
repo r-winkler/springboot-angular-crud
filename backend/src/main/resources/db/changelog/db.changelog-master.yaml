@@ -131,4 +131,57 @@ databaseChangeLog:
               - column:
                   name: language
                   value: Spanish
+  - changeSet:
+      id: 3
+      author: rwinkler
+      changes:
+        - createTable:
+            tableName: language
+            columns:
+              - column:
+                  name: id
+                  type: long
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: language
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 4
+      author: rwinkler
+      changes:
+        - insert:
+            tableName: language
+            columns:
+              - column:
+                  name: language
+                  value: German
+        - insert:
+            tableName: language
+            columns:
+              - column:
+                  name: language
+                  value: English
+        - insert:
+            tableName: language
+            columns:
+              - column:
+                  name: language
+                  value: French
+        - insert:
+            tableName: language
+            columns:
+              - column:
+                  name: language
+                  value: Spanish
+        - insert:
+            tableName: language
+            columns:
+              - column:
+                  name: language
+                  value: Other
 
