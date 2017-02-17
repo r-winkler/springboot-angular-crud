@@ -9,6 +9,8 @@ import { EmployeeComponent } from './employee/employee.component';
 import {EmployeeService} from "./employee/employee.service";
 import { NavbarComponent } from './navbar/navbar.component';
 import {ToastrService} from "./common/toastr.service";
+import {RouterModule} from "@angular/router";
+import {appRoutes} from "./routes";
 //import {EmployeeData} from "./employee/employee-data";
 
 @NgModule({
@@ -21,6 +23,7 @@ import {ToastrService} from "./common/toastr.service";
     BrowserModule,
     FormsModule,
     HttpModule,
+    RouterModule.forRoot(appRoutes),
     //InMemoryWebApiModule.forRoot(EmployeeData),
   ],
   providers: [EmployeeService, ToastrService],
