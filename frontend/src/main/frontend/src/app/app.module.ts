@@ -11,13 +11,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {ToastrService} from "./common/toastr.service";
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./routes";
+import { WelcomeComponent } from './welcome/welcome.component';
 //import {EmployeeData} from "./employee/employee-data";
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeComponent,
-    NavbarComponent
+    NavbarComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

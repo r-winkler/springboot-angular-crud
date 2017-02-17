@@ -2,8 +2,8 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="#">{{welcome}}</a></li>
-        <li><a href="#">{{employees}}</a></li>
+        <li><a [routerLink]="['/welcome']">{{welcome}}</a></li>
+        <li><a [routerLink]="['/employee']">{{employees}}</a></li>
       </ul>
       <button type="button" class="btn btn-default navbar-btn pull-right">{{login}}</button>
     </div>
