@@ -10,7 +10,7 @@ import {EmployeeService} from "./employee/employee.service";
 import { NavbarComponent } from './navbar/navbar.component';
 import {ToastrService} from "./common/toastr.service";
 import {RouterModule} from "@angular/router";
-import {appRoutes} from "./routes";
+import {appRoutes} from "./app.routes";
 import { WelcomeComponent } from './welcome/welcome.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 //import {EmployeeData} from "./employee/employee-data";
