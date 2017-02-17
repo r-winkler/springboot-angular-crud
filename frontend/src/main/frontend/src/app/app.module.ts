@@ -14,6 +14,8 @@ import {appRoutes} from "./app.routes";
 import { WelcomeComponent } from './welcome/welcome.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import {LanguageService} from "./common/language/language.service";
+import { ErrorComponent } from './common/error/error.component';
+import {EmployeeRouteActivator} from "./employee-details/employee-route-activator.service";
 //import {EmployeeData} from "./employee/employee-data";
 
 @NgModule({
@@ -22,7 +24,8 @@ import {LanguageService} from "./common/language/language.service";
     EmployeeComponent,
     NavbarComponent,
     WelcomeComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,7 @@ import {LanguageService} from "./common/language/language.service";
     RouterModule.forRoot(appRoutes),
     //InMemoryWebApiModule.forRoot(EmployeeData),
   ],
-  providers: [EmployeeService, ToastrService, LanguageService],
+  providers: [EmployeeService, ToastrService, LanguageService, EmployeeRouteActivator],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
