@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee/employee.component';
 import {EmployeeService} from "./employee/employee.service";
 import { NavbarComponent } from './navbar/navbar.component';
+import {ToastrService} from "./common/toastr.service";
 //import {EmployeeData} from "./employee/employee-data";
 
 @NgModule({
@@ -22,7 +23,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpModule,
     //InMemoryWebApiModule.forRoot(EmployeeData),
   ],
-  providers: [EmployeeService],
+  providers: [EmployeeService, ToastrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

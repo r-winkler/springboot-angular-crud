@@ -1,6 +1,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>Id</th>
       <th>Firstname</th>
       <th>Lastname</th>
       <th>Age</th>
@@ -9,6 +10,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let employee of employees">
+      <td>{{employee.id}}</td>
       <td>{{employee.firstName}}</td>
       <td>{{employee.lastName}}</td>
       <td>{{employee.age}}</td>

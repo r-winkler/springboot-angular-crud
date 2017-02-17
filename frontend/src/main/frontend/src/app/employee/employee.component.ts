@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {EmployeeService} from "./employee.service";
 import {IEmployee} from "./employee.model";
+import {ToastrService} from "../common/toastr.service";
 
 @Component({
   selector: 'app-employee',
@@ -12,10 +13,11 @@ export class EmployeeComponent implements OnInit {
   employees: IEmployee[];
   errorMessage: string;
 
-  constructor(private _employeeService: EmployeeService) { }
+  constructor(private _employeeService: EmployeeService, private _toastrService: ToastrService) { }
 
   ngOnInit() {
     this.getAllEmployees();
+    this._toastrService.info("Employee page loaded.")
   }
 
   getAllEmployees() {
