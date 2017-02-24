@@ -46,7 +46,7 @@
       </select>
     </div>
 
-    <button [routerLink]="['/employee/']" class="btn btn-primary" type="cancel" [disabled]="!employeeForm.dirty">Cancel</button>
+    <button [routerLink]="['/employee/']" class="btn btn-primary" type="cancel">Cancel</button>
     <button class="btn btn-primary" type="submit" [disabled]="employeeForm.invalid || !employeeForm.dirty">Save</button>
   </form>
 </div>
