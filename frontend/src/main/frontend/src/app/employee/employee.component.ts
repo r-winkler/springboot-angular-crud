@@ -32,10 +32,12 @@ export class EmployeeComponent implements OnInit {
       // Don't delete, it was never saved.
       this.onSaveComplete();
     } else {
-      this._employeeService.deleteEmployee(id).subscribe(
+      if (window.confirm("Do you really want to delete this Employee?")) {
+        this._employeeService.deleteEmployee(id).subscribe(
           () => this.onSaveComplete(),
           (error: any) => this.errorMessage = <any>error
-      );
+        );
+      }
     }
   }
 
