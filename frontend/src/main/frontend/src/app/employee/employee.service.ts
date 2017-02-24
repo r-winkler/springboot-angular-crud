@@ -24,10 +24,10 @@ export class EmployeeService {
   }
 
   getEmployee(id: number): Observable<IEmployee> {
-    if (id === 0) {
+    if (id == 0) {
       return Observable.of(this.initializeEmployee());
       // return Observable.create((observer: any) => {
-      //     observer.next(this.initializeProduct());
+      //     observer.next(this.initializeEmployee());
       //     observer.complete();
       // });
     }
@@ -98,7 +98,7 @@ export class EmployeeService {
       lastName: null,
       profession: null,
       age: null,
-      fullTime: null,
+      fullTime: false,
       language: null
     };
   }

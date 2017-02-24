@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {IEmployee} from "../employee/employee.model";
 import {EmployeeService} from "../employee/employee.service";
@@ -11,10 +11,11 @@ import {ToastrService} from "../common/toastr.service";
 
 
 /* Custom Validator */
-function languageValidator(c: AbstractControl): {[key: string]:boolean} | null {
-  if(c.value === 'default') {
-    return { 'language': true}
-  };
+function languageValidator(c: AbstractControl): {[key: string]: boolean} | null {
+  if (c.value === 'default') {
+    return {'language': true}
+  }
+  ;
   return null;
 };
 
@@ -27,7 +28,6 @@ export class EmployeeDetailsComponent implements OnInit {
   employeeForm: FormGroup;
   firstNameMessage: string;
   languages = [];
-  errorMessage: string;
   private validationMessages = {
     required: 'Firstname is required.',
     minlength: 'Firstname must be at least 3 characters.'
@@ -39,7 +39,8 @@ export class EmployeeDetailsComponent implements OnInit {
               private _route: ActivatedRoute,
               private fb: FormBuilder,
               private _languageService: LanguageService,
-              private _toastrService: ToastrService) { }
+              private _toastrService: ToastrService) {
+  }
 
   ngOnInit() {
 
@@ -47,28 +48,35 @@ export class EmployeeDetailsComponent implements OnInit {
       id: [],
       firstName: [, [Validators.required, Validators.minLength(3)]],
       lastName: [, Validators.required],
-      age: [],
-      profession: [],
+      age: [, Validators.required],
+      profession: [, Validators.required],
       fullTime: [],
-      language: [, languageValidator]
+      language: [, [languageValidator, Validators.required]]
     });
 
-    let languages = this._languageService.getLanguages();
-    let employee = this._employeeService.getEmployee(this._route.snapshot.params['id']);
+    let languages = this._languageService.getLanguages().subscribe(languages => this.languages = languages);
 
-
-    Observable.zip(
-      languages,
-      employee,
-      (languages, employee) => {
-        this.languages = languages;
-        this.employee = employee;
+    let employee = this._employeeService.getEmployee(this._route.snapshot.params['id']).subscribe(employee => {
+      this.employee = employee;
+      if (this.employee.language != null) {
         const selectedLanguage = this.languages.find(language => language === this.employee.language);
         this.employee.language = selectedLanguage;
-        this.employeeForm.setValue(this.employee);
       }
-    ).subscribe();
+      this.employeeForm.setValue(this.employee);
+    });
 
+
+    // Observable.zip(
+    //   languages,
+    //   employee,
+    //   (languages, employee) => {
+    //     this.languages = languages;
+    //     this.employee = employee;
+    //     const selectedLanguage = this.languages.find(language => language === this.employee.language);
+    //     this.employee.language = selectedLanguage;
+    //     this.employeeForm.setValue(this.employee);
+    //   }
+    // ).subscribe();
 
 
     const lastNameControl = this.employeeForm.get('lastName');
@@ -79,7 +87,7 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   lastNameToUpperCase(value: string) {
-    if(value.length > 0)
+    if (value.length > 0)
       this.employeeForm.patchValue({lastName: value.charAt(0).toUpperCase() + value.slice(1)});
     else
       this.employeeForm.patchValue({lastName: value});
@@ -88,13 +96,17 @@ export class EmployeeDetailsComponent implements OnInit {
   save() {
     this._employeeService.saveEmployee(this.employeeForm.value).subscribe(
       () => this.onSaveComplete(),
-      (error: any) => this.errorMessage = <any>error
+      (error: any) => this.onError(<string>error)
     );
   }
 
   onSaveComplete(): void {
     this._toastrService.success('Employee saved.');
     this._router.navigate(['/employee/']);
+  }
+
+  onError(error: string): void {
+    this._toastrService.error(error)
   }
 
   setMessage(c: AbstractControl): void {

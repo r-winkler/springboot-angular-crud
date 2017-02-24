@@ -11,16 +11,18 @@ export class EmployeeRouteActivator implements CanActivate {
 
   }
 
+  // only activated if new employee is created => id=0 or when employee exists in DB
   canActivate(route: ActivatedRouteSnapshot) {
-    return this._employeeService.getEmployee(route.params['id'])
-      .map(employee => {
-        const employeeExists = !!employee;
-        if (!employeeExists) {
-          this._router.navigate(['/404']);
-        }
-        return employeeExists;
-      });
-
+      return route.params['id'] == 0 || this._employeeService.getEmployee(route.params['id'])
+        .map(employee => {
+          const employeeExists = !!employee;
+          if (!employeeExists) {
+            this._router.navigate(['/404']);
+          }
+          return employeeExists;
+        });
     }
+
+
 
 }

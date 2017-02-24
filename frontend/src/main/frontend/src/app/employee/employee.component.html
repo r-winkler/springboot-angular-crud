@@ -1,7 +1,7 @@
 <div class="container">
-<h1>Employees</h1>
-<table *ngIf="employees" class="table table-striped">
-  <thead>
+  <h1>Employees</h1>
+  <table *ngIf="employees" class="table table-striped">
+    <thead>
     <tr>
       <th>Id</th>
       <th>First name</th>
@@ -12,8 +12,8 @@
       <th>Language</th>
       <th>Action</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr *ngFor="let employee of employees">
       <td>{{employee.id}}</td>
       <td>{{employee.firstName}}</td>
@@ -33,6 +33,10 @@
         </div>
       </td>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-primary pull-right" [routerLink]="['/employee/0']">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    Add
+  </button>
 </div>

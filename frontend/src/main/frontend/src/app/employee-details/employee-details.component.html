@@ -1,6 +1,6 @@
-<div *ngIf="employee" class="container">
+<div class="container">
   <h3>Employee Form</h3>
-  <form (submit)="save()" novalidate [formGroup]="employeeForm">
+  <form *ngIf="employee" (submit)="save()" novalidate [formGroup]="employeeForm">
 
     <div class="form-group" [class.has-error]="firstNameMessage">
       <label for="firstNameId" class="control-label">First Name</label>
