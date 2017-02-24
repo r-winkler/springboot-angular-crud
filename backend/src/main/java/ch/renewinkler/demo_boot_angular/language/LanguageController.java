@@ -20,4 +20,9 @@ public class LanguageController {
     public List<Language> findAll() {
         return service.findAll();
     }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/clear")
+    public void clearCache() {
+        service.clearCache();
+    }
 }
