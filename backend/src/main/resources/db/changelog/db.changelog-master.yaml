@@ -47,94 +47,6 @@ databaseChangeLog:
       id: 2
       author: rwinkler
       changes:
-        - insert:
-            tableName: employee
-            columns:
-              - column:
-                  name: first_name
-                  value: Renée
-              - column:
-                  name: last_name
-                  value: Winkler
-              - column:
-                  name: profession
-                  value: Software Engineer
-              - column:
-                  name: age
-                  value: 32
-              - column:
-                  name: full_time
-                  value: false
-              - column:
-                  name: language
-                  value: German
-        - insert:
-            tableName: employee
-            columns:
-              - column:
-                  name: first_name
-                  value: Max
-              - column:
-                  name: last_name
-                  value: Muster
-              - column:
-                  name: profession
-                  value: Chief Financial Officer
-              - column:
-                  name: age
-                  value: 45
-              - column:
-                  name: full_time
-                  value: true
-              - column:
-                  name: language
-                  value: English
-        - insert:
-            tableName: employee
-            columns:
-              - column:
-                  name: first_name
-                  value: Hanna
-              - column:
-                  name: last_name
-                  value: Miller
-              - column:
-                  name: profession
-                  value: Account Manager
-              - column:
-                  name: age
-                  value: 35
-              - column:
-                  name: full_time
-                  value: true
-              - column:
-                  name: language
-                  value: French
-        - insert:
-            tableName: employee
-            columns:
-              - column:
-                  name: first_name
-                  value: Fredy
-              - column:
-                  name: last_name
-                  value: Frog
-              - column:
-                  name: profession
-                  value: Soldier
-              - column:
-                  name: age
-                  value: 26
-              - column:
-                  name: full_time
-                  value: false
-              - column:
-                  name: language
-                  value: Spanish
-  - changeSet:
-      id: 3
-      author: rwinkler
-      changes:
         - createTable:
             tableName: language
             columns:
@@ -150,38 +62,7 @@ databaseChangeLog:
                   type: varchar(100)
                   constraints:
                     nullable: false
-  - changeSet:
-      id: 4
-      author: rwinkler
-      changes:
-        - insert:
-            tableName: language
-            columns:
-              - column:
-                  name: language
-                  value: German
-        - insert:
-            tableName: language
-            columns:
-              - column:
-                  name: language
-                  value: English
-        - insert:
-            tableName: language
-            columns:
-              - column:
-                  name: language
-                  value: French
-        - insert:
-            tableName: language
-            columns:
-              - column:
-                  name: language
-                  value: Spanish
-        - insert:
-            tableName: language
-            columns:
-              - column:
-                  name: language
-                  value: Other
+  - include:
+      file: db/changelog/db.changelog-data.yaml
+
 
