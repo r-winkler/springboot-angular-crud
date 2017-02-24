@@ -10,6 +10,7 @@
       <th>Profession</th>
       <th>Full time</th>
       <th>Language</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -22,10 +23,14 @@
       <td>{{employee.fullTime}}</td>
       <td>{{employee.language}}</td>
       <td>
-        <button (click)=deleteEmployee(employee.id)>delete</button>
-      </td>
-      <td>
-        <button [routerLink]="['/employee/' + employee.id]">details</button>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-secondary" (click)=deleteEmployee(employee.id)>
+            <span class="fa fa-trash-o" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="btn btn-secondary" [routerLink]="['/employee/' + employee.id]">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          </button>
+        </div>
       </td>
     </tr>
   </tbody>

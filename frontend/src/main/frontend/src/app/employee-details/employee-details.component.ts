@@ -61,7 +61,7 @@ export class EmployeeDetailsComponent implements OnInit {
         this.employee.language = selectedLanguage;
         this.employeeForm.setValue(this.employee);
       }
-    ).subscribe(data => console.log("done"));
+    ).subscribe();
 
 
 
