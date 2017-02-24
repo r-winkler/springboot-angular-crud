@@ -1,6 +1,6 @@
 <div *ngIf="employee" class="container">
   <h3>Employee Form</h3>
-  <form (submit)="submitForm()" novalidate [formGroup]="employeeForm">
+  <form (submit)="save()" novalidate [formGroup]="employeeForm">
 
     <div class="form-group" [class.has-error]="firstNameMessage">
       <label for="firstNameId" class="control-label">First Name</label>
@@ -46,6 +46,7 @@
       </select>
     </div>
 
-    <button class="btn btn-primary" type="submit" [disabled]="employeeForm.invalid">OK</button>
+    <button [routerLink]="['/employee/']" class="btn btn-primary" type="cancel" [disabled]="!employeeForm.dirty">Cancel</button>
+    <button class="btn btn-primary" type="submit" [disabled]="employeeForm.invalid || !employeeForm.dirty">Save</button>
   </form>
 </div>

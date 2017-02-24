@@ -52,8 +52,7 @@ export class EmployeeService {
   saveEmployee(employee: IEmployee): Observable<IEmployee> {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
-
-    if (employee.id === null) {
+    if (employee.id == null) { // id is null or undefined
       return this.createEmployee(employee, options);
     }
     return this.updateEmployee(employee, options);
@@ -61,6 +60,7 @@ export class EmployeeService {
 
   private createEmployee(employee: IEmployee, options: RequestOptions): Observable<IEmployee> {
     employee.id = undefined;
+    console.log(employee);
     return this._http.post(this._baseUrl, employee, options)
       .map(this.extractData)
       .do(data => console.log('createEmployee: ' + JSON.stringify(data)))
