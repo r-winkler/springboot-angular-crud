@@ -4,7 +4,7 @@
     <thead>
     <tr>
       <th>Id</th>
-      <th>First name</th>
+      <th>First Name</th>
       <th>Last name</th>
       <th>Age</th>
       <th>Profession</th>
@@ -14,7 +14,17 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let employee of employees">
+    <tr>
+      <td><input type="search" size="10" [(ngModel)]="employeeFilter.id" (ngModelChange)="filterChanged($event)"></td>
+      <td><input type="search" size="10" [(ngModel)]="employeeFilter.firstName" (ngModelChange)="filterChanged($event)"></td>
+      <td><input type="search" size="10" [(ngModel)]="employeeFilter.lastName" (ngModelChange)="filterChanged($event)"></td>
+      <td><input type="search" size="10" [(ngModel)]="employeeFilter.age" (ngModelChange)="filterChanged($event)"></td>
+      <td><input type="search" size="10" [(ngModel)]="employeeFilter.profession" (ngModelChange)="filterChanged($event)"></td>
+      <td></td>
+      <td><input type="search" size="10" [(ngModel)]="employeeFilter.language" (ngModelChange)="filterChanged($event)"></td>
+      <td></td>
+    </tr>
+    <tr *ngFor="let employee of employees | filterBy: employeeFilterMap">
       <td>{{employee.id}}</td>
       <td>{{employee.firstName}}</td>
       <td>{{employee.lastName}}</td>

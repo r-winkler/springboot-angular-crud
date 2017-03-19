@@ -16,6 +16,7 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
 import {LanguageService} from "./common/language/language.service";
 import { ErrorComponent } from './common/error/error.component';
 import {EmployeeRouteActivator} from "./employee-details/employee-route-activator.service";
+import {EmployeeFilterPipe} from "./employee/employee-filter.pipe";
 //import {EmployeeData} from "./employee/employee-data";
 
 @NgModule({
@@ -25,7 +26,8 @@ import {EmployeeRouteActivator} from "./employee-details/employee-route-activato
     NavbarComponent,
     WelcomeComponent,
     EmployeeDetailsComponent,
-    ErrorComponent
+    ErrorComponent,
+    EmployeeFilterPipe
   ],
   imports: [
     BrowserModule,
