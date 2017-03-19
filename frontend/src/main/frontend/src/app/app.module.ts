@@ -18,6 +18,8 @@ import { ErrorComponent } from './common/error/error.component';
 import {EmployeeRouteActivator} from "./employee-details/employee-route-activator.service";
 import {EmployeeFilterPipe} from "./employee/employee-filter.pipe";
 import { LoginComponent } from './login/login.component';
+import {AuthActivator} from "./common/auth-activator.service";
+import {AuthService} from "./common/auth.service";
 //import {EmployeeData} from "./employee/employee-data";
 
 @NgModule({
@@ -39,7 +41,7 @@ import { LoginComponent } from './login/login.component';
     RouterModule.forRoot(appRoutes),
     //InMemoryWebApiModule.forRoot(EmployeeData),
   ],
-  providers: [EmployeeService, ToastrService, LanguageService, EmployeeRouteActivator],
+  providers: [EmployeeService, ToastrService, LanguageService, EmployeeRouteActivator, AuthActivator, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
