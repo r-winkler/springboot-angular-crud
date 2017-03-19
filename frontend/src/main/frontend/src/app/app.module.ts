@@ -17,6 +17,7 @@ import {LanguageService} from "./common/language/language.service";
 import { ErrorComponent } from './common/error/error.component';
 import {EmployeeRouteActivator} from "./employee-details/employee-route-activator.service";
 import {EmployeeFilterPipe} from "./employee/employee-filter.pipe";
+import { LoginComponent } from './login/login.component';
 //import {EmployeeData} from "./employee/employee-data";
 
 @NgModule({
@@ -27,7 +28,8 @@ import {EmployeeFilterPipe} from "./employee/employee-filter.pipe";
     WelcomeComponent,
     EmployeeDetailsComponent,
     ErrorComponent,
-    EmployeeFilterPipe
+    EmployeeFilterPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
