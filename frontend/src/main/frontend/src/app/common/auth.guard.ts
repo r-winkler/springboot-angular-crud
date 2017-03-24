@@ -4,7 +4,7 @@ import {AuthService} from "./auth.service";
 import {ToastrService} from "../common/toastr.service";
 
 @Injectable()
-export class AuthActivator implements CanActivate {
+export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService, private _toastrService: ToastrService) {
   }

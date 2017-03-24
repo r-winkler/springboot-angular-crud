@@ -8,10 +8,10 @@ import {Router} from "@angular/router";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent {
 
-  loginText: string;
-  logoutText: string;
+  loginText: string = "Login";
+  logoutText: string = "Logout";
 
   username: string;
   password: string;
@@ -20,19 +20,12 @@ export class LoginComponent implements OnInit{
 
   }
 
-  ngOnInit(): void {
-    this.loginText = "Login";
-    this.logoutText = "Logout";
-  }
-
   login(): void {
-    if (this._authService.login(this.username, this.password)) {
-      this._toastrService.success('Logged in');
-      this.reset();
-    }
-    else {
-      this._toastrService.error('Could not log in. Please check username and password. Default is admin/admin.');
-    }
+    this._authService.login(this.username, this.password)
+      .subscribe(
+        () => this.onLoginSuccess(),
+        (error: any) => this.onLoginError(<string>error));
+
   }
 
   logout(): void {
@@ -48,6 +41,16 @@ export class LoginComponent implements OnInit{
   reset(): void {
     this.username = "";
     this.password = "";
+  }
+
+  onLoginSuccess() : void {
+    this._toastrService.success('Logged in');
+    this.reset();
+  }
+
+
+  onLoginError(error: string): void {
+    this._toastrService.error('Could not log in. Please check username and password and make sure Keycloak is running.');
   }
 
 }
