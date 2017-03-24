@@ -51,6 +51,7 @@ export class LoginComponent {
 
   onLoginError(error: string): void {
     this._toastrService.error('Could not log in. Please check username and password and make sure Keycloak is running.');
+    this.reset();
   }
 
 }
