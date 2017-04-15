@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(private oauthService: OAuthService) {
 
     // URL of the SPA to redirect the user to after login
-    this.oauthService.redirectUri = window.location.origin;
+    this.oauthService.redirectUri = window.location.origin + "/welcome";
 
     // The SPA's id. The SPA is registerd with this id at the auth-server
     this.oauthService.clientId = "service";
