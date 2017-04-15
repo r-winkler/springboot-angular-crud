@@ -19,7 +19,7 @@ import {EmployeeRouteActivator} from "./employee-details/employee-route-activato
 import {EmployeeFilterPipe} from "./employee/employee-filter.pipe";
 import { LoginComponent } from './login/login.component';
 import {AuthGuard} from "./common/auth.guard";
-import {AuthService} from "./common/auth.service";
+import {OAuthModule, OAuthService} from 'angular-oauth2-oidc';
 //import {EmployeeData} from "./employee/employee-data";
 
 @NgModule({
@@ -39,9 +39,10 @@ import {AuthService} from "./common/auth.service";
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
+    OAuthModule.forRoot()
     //InMemoryWebApiModule.forRoot(EmployeeData),
   ],
-  providers: [EmployeeService, ToastrService, LanguageService, EmployeeRouteActivator, AuthGuard, AuthService],
+  providers: [EmployeeService, ToastrService, LanguageService, EmployeeRouteActivator, AuthGuard, OAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

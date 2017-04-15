@@ -1,7 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {AuthService} from "../common/auth.service";
+import {OAuthService} from "angular-oauth2-oidc";
 import {ToastrService} from "../common/toastr.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -13,45 +12,22 @@ export class LoginComponent {
   loginText: string = "Login";
   logoutText: string = "Logout";
 
-  username: string;
-  password: string;
-
-  constructor(private _authService: AuthService, private _toastrService: ToastrService, private router: Router) {
+  constructor(private oAuthService: OAuthService, private toastrService: ToastrService) {
 
   }
 
   login(): void {
-    this._authService.login(this.username, this.password)
-      .subscribe(
-        () => this.onLoginSuccess(),
-        (error: any) => this.onLoginError(<string>error));
-
+    this.oAuthService.initImplicitFlow();
   }
 
   logout(): void {
-    if (this._authService.logout()){
-      this.router.navigateByUrl('/welcome');
-      this._toastrService.info('Logged out');
-    }
-    else {
-      this._toastrService.info('Could not log out. Try again.');
-    }
+    this.oAuthService.logOut();
   }
 
-  reset(): void {
-    this.username = "";
-    this.password = "";
-  }
-
-  onLoginSuccess() : void {
-    this._toastrService.success('Logged in');
-    this.reset();
-  }
-
-
-  onLoginError(error: string): void {
-    this._toastrService.error('Could not log in. Please check username and password and make sure Keycloak is running.');
-    this.reset();
+  public get name() {
+    let claims = this.oAuthService.getIdentityClaims();
+    if (!claims) return null;
+    return claims.given_name;
   }
 
 }

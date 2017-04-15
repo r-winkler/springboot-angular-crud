@@ -1,20 +1,19 @@
 import {Injectable} from "@angular/core";
 import {CanActivate} from "@angular/router";
-import {AuthService} from "./auth.service";
-import {ToastrService} from "../common/toastr.service";
+import {OAuthService} from "angular-oauth2-oidc";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: AuthService, private _toastrService: ToastrService) {
+  constructor(private oAuthService: OAuthService) {
   }
 
   canActivate(){
-    if (this.authService.isLoggedIn()) {
+    if (this.oAuthService.hasValidAccessToken()) {
       return true;
     }
     else {
-      this._toastrService.info("You need to log in.");
+      this.oAuthService.initImplicitFlow();
       return false;
     }
   }

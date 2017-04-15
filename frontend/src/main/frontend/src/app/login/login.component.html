@@ -1,21 +1,3 @@
-<button *ngIf="!_authService.isLoggedIn()" type="button" class="btn btn-default navbar-btn pull-right" href="#" data-toggle="modal"
-        data-target="#login-modal">{{loginText}}
+<button *ngIf="!name" type="button" class="btn btn-default navbar-btn pull-right" (click)="login()">{{loginText}}
 </button>
-<button *ngIf="_authService.isLoggedIn()" type="button" class="btn btn-default navbar-btn pull-right" (click)="logout()">{{logoutText}}</button>
-
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-     style="display: none;">
-  <div class="modal-dialog">
-    <div class="loginmodal-container">
-      <h1>Login to Your Account</h1><br>
-      <form>
-        <input type="text" name="user" placeholder="Username" [(ngModel)]="username">
-        <input type="password" name="pass" placeholder="Password" [(ngModel)]="password">
-        <div class="button-container">
-          <input type="button" name="cancel" class="login loginmodal-button" value="Cancel" (click)="reset()" data-dismiss="modal">
-          <input type="submit" name="login" class="login loginmodal-button" value="Login" (click)="login()" data-dismiss="modal">
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+<button *ngIf="name" type="button" class="btn btn-default navbar-btn pull-right" (click)="logout()">{{logoutText}}</button>
