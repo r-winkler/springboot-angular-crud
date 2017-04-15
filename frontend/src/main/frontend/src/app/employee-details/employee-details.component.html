@@ -11,21 +11,30 @@
     </div>
 
 
-    <div class="form-group">
-      <label for="lastNameId">Last Name</label>
+    <div class="form-group" [class.has-error]="lastNameMessage">
+      <label for="lastNameId" class="control-label">Last Name</label>
       <input id="lastNameId" type="text" class="form-control" placeholder="lastName" formControlName="lastName">
     </div>
-
-
-    <div class="form-group">
-      <label for="ageId">Age</label>
-      <input id="ageId" type="number" class="form-control" placeholder="age" formControlName="age">
+    <div *ngIf="lastNameMessage" class="alert alert-danger">
+      {{lastNameMessage}}
     </div>
 
 
-    <div class="form-group">
-      <label for="professionId">Profession</label>
+    <div class="form-group" [class.has-error]="ageMessage">
+      <label for="ageId" class="control-label">Age</label>
+      <input id="ageId" type="number" class="form-control" placeholder="age" formControlName="age">
+    </div>
+    <div *ngIf="ageMessage" class="alert alert-danger">
+      {{ageMessage}}
+    </div>
+
+
+    <div class="form-group" [class.has-error]="professionMessage">
+      <label for="professionId" class="control-label">Profession</label>
       <input id="professionId" type="text" class="form-control" placeholder="profession" formControlName="profession">
+    </div>
+    <div *ngIf="professionMessage" class="alert alert-danger">
+      {{professionMessage}}
     </div>
 
 

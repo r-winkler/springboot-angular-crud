@@ -27,10 +27,28 @@ function languageValidator(c: AbstractControl): {[key: string]: boolean} | null 
 export class EmployeeDetailsComponent implements OnInit {
   employeeForm: FormGroup;
   firstNameMessage: string;
+  lastNameMessage: string;
+  ageMessage: string;
+  professionMessage: string;
   languages = [];
-  private validationMessages = {
+  private firstNameValidationMessages = {
     required: 'Firstname is required.',
-    minlength: 'Firstname must be at least 3 characters.'
+    minlength: 'Firstname must be at least 3 characters.',
+    pattern: 'Firstname must contain only characters.'
+  };
+  private lastNameValidationMessages = {
+    required: 'Lastname is required.',
+    minlength: 'Lastname must be at least 3 characters.',
+    pattern: 'Lastname must contain only characters.'
+  };
+  private ageValidationMessages = {
+    required: 'Age is required.',
+    pattern: 'Age must contain only characters and be in range between 0-99.'
+  };
+  private professionValidationMessages = {
+    required: 'Profession is required.',
+    minlength: 'Profession must be at least 3 characters.',
+    pattern: 'Profession must contain only characters.'
   };
   employee: IEmployee;
 
@@ -44,12 +62,14 @@ export class EmployeeDetailsComponent implements OnInit {
 
   ngOnInit() {
 
+    let onlyText = Validators.pattern('[a-zA-Z]*');
+
     this.employeeForm = this.fb.group({
       id: [],
-      firstName: [, [Validators.required, Validators.minLength(3)]],
-      lastName: [, Validators.required],
-      age: [, Validators.required],
-      profession: [, Validators.required],
+      firstName: [, [Validators.required, Validators.minLength(3), onlyText]],
+      lastName: [, [Validators.required, Validators.minLength(3), onlyText]],
+      age: [, [Validators.required, Validators.pattern('[0-9]{1,2}')]],
+      profession: [, [Validators.required, onlyText]],
       fullTime: [],
       language: [, [languageValidator, Validators.required]]
     });
@@ -78,19 +98,36 @@ export class EmployeeDetailsComponent implements OnInit {
     //   }
     // ).subscribe();
 
+    const firstNameControl = this.employeeForm.get('firstName');
+    firstNameControl.valueChanges.distinctUntilChanged().subscribe(value => this.firstNameToUpperCase(firstNameControl.value));
+    firstNameControl.valueChanges.debounceTime(1000).subscribe(value => this.setFirstNameMessage(firstNameControl));
 
     const lastNameControl = this.employeeForm.get('lastName');
     lastNameControl.valueChanges.distinctUntilChanged().subscribe(value => this.lastNameToUpperCase(lastNameControl.value));
+    lastNameControl.valueChanges.debounceTime(1000).subscribe(value => this.setLastNameMessage(lastNameControl));
 
-    const firstNameControl = this.employeeForm.get('firstName');
-    firstNameControl.valueChanges.debounceTime(1000).subscribe(value => this.setMessage(firstNameControl));
+    const ageControl = this.employeeForm.get('age');
+    ageControl.valueChanges.debounceTime(1000).subscribe(value => this.setAgeMessage(ageControl));
+
+    const professionControl = this.employeeForm.get('profession');
+    professionControl.valueChanges.distinctUntilChanged().subscribe(value => this.professionToUpperCase(professionControl.value));
+    professionControl.valueChanges.debounceTime(1000).subscribe(value => this.setProfessionMessage(professionControl));
+
+  }
+
+  firstNameToUpperCase(value: string) {
+    if (value.length > 0)
+      this.employeeForm.patchValue({firstName: value.charAt(0).toUpperCase() + value.slice(1)});
   }
 
   lastNameToUpperCase(value: string) {
     if (value.length > 0)
       this.employeeForm.patchValue({lastName: value.charAt(0).toUpperCase() + value.slice(1)});
-    else
-      this.employeeForm.patchValue({lastName: value});
+  }
+
+  professionToUpperCase(value: string) {
+    if (value.length > 0)
+      this.employeeForm.patchValue({profession: value.charAt(0).toUpperCase() + value.slice(1)});
   }
 
   save() {
@@ -109,10 +146,31 @@ export class EmployeeDetailsComponent implements OnInit {
     this._toastrService.error(error)
   }
 
-  setMessage(c: AbstractControl): void {
+  setFirstNameMessage(c: AbstractControl): void {
     this.firstNameMessage = '';
     if ((c.touched || c.dirty) && c.errors) {
-      this.firstNameMessage = Object.keys(c.errors).map(key => this.validationMessages[key]).join(' ');
+      this.firstNameMessage = Object.keys(c.errors).map(key => this.firstNameValidationMessages[key]).join(' ');
+    }
+  }
+
+  setLastNameMessage(c: AbstractControl): void {
+    this.lastNameMessage = '';
+    if ((c.touched || c.dirty) && c.errors) {
+      this.lastNameMessage = Object.keys(c.errors).map(key => this.lastNameValidationMessages[key]).join(' ');
+    }
+  }
+
+  setAgeMessage(c: AbstractControl): void {
+    this.ageMessage = '';
+    if ((c.touched || c.dirty) && c.errors) {
+      this.ageMessage = Object.keys(c.errors).map(key => this.ageValidationMessages[key]).join(' ');
+    }
+  }
+
+  setProfessionMessage(c: AbstractControl): void {
+    this.professionMessage = '';
+    if ((c.touched || c.dirty) && c.errors) {
+      this.professionMessage = Object.keys(c.errors).map(key => this.professionValidationMessages[key]).join(' ');
     }
   }
 
