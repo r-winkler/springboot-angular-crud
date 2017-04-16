@@ -15,7 +15,7 @@ export class AppComponent {
     this.oauthService.redirectUri = window.location.origin + "/welcome";
 
     // The SPA's id. The SPA is registerd with this id at the auth-server
-    this.oauthService.clientId = "service";
+    this.oauthService.clientId = "angular-client";
 
     // set the scope for the permissions the client should request
     // The first three are defined by OIDC.

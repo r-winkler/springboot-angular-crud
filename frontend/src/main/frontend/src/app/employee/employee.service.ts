@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {IEmployee} from "./employee.model";
-import {Http, Response, Headers, RequestOptions} from "@angular/http";
+import {Http, Response, Headers, RequestOptions, RequestOptionsArgs} from "@angular/http";
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
+import {OAuthService} from "angular-oauth2-oidc";
 
 
 @Injectable()
@@ -14,11 +15,19 @@ export class EmployeeService {
 
   private _baseUrl = 'api/employee';
 
-  constructor(private _http: Http) {
+  constructor(private _http: Http, private oAuthService: OAuthService) {
+  }
+
+  private getAuthHeader() {
+    let headers = new Headers();
+    headers.set('Accept', 'application/json');
+    headers.set('Authorization', 'Bearer ' + this.oAuthService.getAccessToken());
+    return headers;
   }
 
   getEmployees(): Observable<IEmployee[]> {
-    return this._http.get(this._baseUrl).map((response: Response) => <IEmployee[]>response.json())
+    let headers = this.getAuthHeader();
+    return this._http.get(this._baseUrl, {headers}).map((response: Response) => <IEmployee[]>response.json())
       .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
@@ -32,44 +41,43 @@ export class EmployeeService {
       // });
     }
     ;
+    let headers = this.getAuthHeader();
     const url = `${this._baseUrl}/${id}`;
-    return this._http.get(url)
+    return this._http.get(url, {headers})
       .map((response: Response) => this.extractData(response))
       .do(data => console.log('getEmployee: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
   deleteEmployee(id: number): Observable<Response> {
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
-
+    let headers = this.getAuthHeader();
     const url = `${this._baseUrl}/${id}`;
-    return this._http.delete(url, options)
+    return this._http.delete(url, {headers})
       .do(data => console.log('deleteEmployee: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
   saveEmployee(employee: IEmployee): Observable<IEmployee> {
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
     if (employee.id == null) { // id is null or undefined
-      return this.createEmployee(employee, options);
+      return this.createEmployee(employee);
     }
-    return this.updateEmployee(employee, options);
+    return this.updateEmployee(employee);
   }
 
-  private createEmployee(employee: IEmployee, options: RequestOptions): Observable<IEmployee> {
+  private createEmployee(employee: IEmployee): Observable<IEmployee> {
     employee.id = undefined;
     console.log(employee);
-    return this._http.post(this._baseUrl, employee, options)
+    let headers = this.getAuthHeader();
+    return this._http.post(this._baseUrl, employee, {headers})
       .map(this.extractData)
       .do(data => console.log('createEmployee: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
-  private updateEmployee(employee: IEmployee, options: RequestOptions): Observable<IEmployee> {
+  private updateEmployee(employee: IEmployee): Observable<IEmployee> {
     const url = `${this._baseUrl}/${employee.id}`;
-    return this._http.put(url, employee, options)
+    let headers = this.getAuthHeader();
+    return this._http.put(url, employee, {headers})
       .map(() => employee)
       .do(data => console.log('updateEmployee: ' + JSON.stringify(data)))
       .catch(this.handleError);
