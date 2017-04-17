@@ -30,9 +30,10 @@ export class AppComponent {
     this.oauthService.setStorage(sessionStorage);
 
     // The name of the auth-server that has to be mentioned within the token
-    //this.oauthService.issuer = "http://localhost:8090/auth/realms/master";
+    //this.oauthService.issuer = "http://"+ window.location.hostname +":8090/auth/realms/master";
 
-    let url = "http://localhost:8090/auth/realms/master/.well-known/openid-configuration";
+    // assumes that keycloak server is on same server as backend application
+    let url = "http://" + window.location.hostname + ":8090/auth/realms/master/.well-known/openid-configuration";
 
     // Load Discovery Document and then try to login the user
     this.oauthService.loadDiscoveryDocument(url).then((doc) => {
