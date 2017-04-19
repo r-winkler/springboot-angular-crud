@@ -21,7 +21,8 @@ import { LoginComponent } from './login/login.component';
 import {AuthGuard} from "./common/auth.guard";
 import {OAuthModule, OAuthService} from 'angular-oauth2-oidc';
 //import {EmployeeData} from "./employee/employee-data";
-import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import {NgxPaginationModule} from 'ngx-pagination';
+import { DropdownComponent } from './utils/dropdown/dropdown.component'; // <-- import the module
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
     EmployeeDetailsComponent,
     ErrorComponent,
     EmployeeFilterPipe,
-    LoginComponent
+    LoginComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,
