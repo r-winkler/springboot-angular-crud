@@ -8,7 +8,6 @@ import {IEmployeeFilter} from "./employee-filter.model";
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss'],
-
 })
 export class EmployeeComponent implements OnInit {
 

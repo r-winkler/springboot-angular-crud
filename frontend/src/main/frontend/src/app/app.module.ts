@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import {AuthGuard} from "./common/auth.guard";
 import {OAuthModule, OAuthService} from 'angular-oauth2-oidc';
 //import {EmployeeData} from "./employee/employee-data";
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {OAuthModule, OAuthService} from 'angular-oauth2-oidc';
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    OAuthModule.forRoot()
+    OAuthModule.forRoot(),
+    NgxPaginationModule
     //InMemoryWebApiModule.forRoot(EmployeeData),
   ],
   providers: [EmployeeService, ToastrService, LanguageService, EmployeeRouteActivator, AuthGuard, OAuthService],

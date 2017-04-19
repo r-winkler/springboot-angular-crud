@@ -24,7 +24,7 @@
       <td><input type="search" size="10" [(ngModel)]="employeeFilter.language" (ngModelChange)="filterChanged($event)"></td>
       <td></td>
     </tr>
-    <tr *ngFor="let employee of employees | filterBy: employeeFilterMap">
+    <tr *ngFor="let employee of employees | filterBy: employeeFilterMap | paginate: { itemsPerPage: 2, currentPage: p }">
       <td>{{employee.id}}</td>
       <td>{{employee.firstName}}</td>
       <td>{{employee.lastName}}</td>
@@ -45,7 +45,8 @@
     </tr>
     </tbody>
   </table>
-  <button type="button" class="btn btn-primary pull-right" [routerLink]="['/employee/0']">
+  <pagination-controls (pageChange)="p = $event" class="pull-right"></pagination-controls>
+  <button type="button" class="btn btn-primary" [routerLink]="['/employee/0']">
     <i class="fa fa-plus" aria-hidden="true"></i>
     Add
   </button>
