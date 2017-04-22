@@ -62,7 +62,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   ngOnInit() {
 
-    let onlyText = Validators.pattern('[a-zA-Z]*');
+    let onlyText = Validators.pattern('[a-zA-ZñÑáéíóúü\\-çÇ\\s]*');
 
     this.employeeForm = this.fb.group({
       id: [],
