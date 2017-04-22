@@ -1,0 +1,3 @@
+<select [ngModel]="selectedValue" (ngModelChange)="onChange($event)">
+  <option *ngFor="let val of values" >{{val}}</option>
+</select>
