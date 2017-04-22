@@ -14,3 +14,7 @@ input[type="search"]::-webkit-search-cancel-button {
 h1 {
   margin-bottom: $h1-margin-bottom;
 }
+
+.pagination-controls {
+  display: flex;
+}
