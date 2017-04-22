@@ -1,3 +1,5 @@
+@import "../../constants";
+
 .btn-group .btn
 {
   border: none;
@@ -7,4 +9,8 @@
 
 input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: searchfield-cancel-button;
+}
+
+h1 {
+  margin-bottom: $h1-margin-bottom;
 }
