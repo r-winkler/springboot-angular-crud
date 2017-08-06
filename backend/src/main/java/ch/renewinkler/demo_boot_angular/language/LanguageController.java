@@ -2,9 +2,7 @@ package ch.renewinkler.demo_boot_angular.language;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,12 +14,12 @@ public class LanguageController {
     @Autowired
     LanguageService service;
 
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+    @GetMapping(produces = "application/json")
     public List<Language> findAll() {
         return service.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/clear")
+    @PutMapping(value = "/clear")
     public void clearCache() {
         service.clearCache();
     }
