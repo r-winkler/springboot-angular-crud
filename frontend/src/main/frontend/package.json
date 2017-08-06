@@ -16,13 +16,13 @@
     "@angular/animations": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
-    "@angular/compiler-cli": "^4.0.0",
+    "@angular/compiler-cli": "^4.3.3",
     "@angular/core": "^4.0.0",
     "@angular/forms": "^4.0.0",
     "@angular/http": "^4.0.0",
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
-    "@angular/platform-server": "^4.0.0",
+    "@angular/platform-server": "^4.3.3",
     "@angular/router": "^4.0.0",
     "angular-oauth2-oidc": "^1.0.20",
     "bootstrap": "^4.0.0-alpha.6",
@@ -38,8 +38,8 @@
     "zone.js": "^0.8.5"
   },
   "devDependencies": {
-    "@angular/cli": "^1.0.0",
-    "@angular/compiler-cli": "^4.0.0",
+    "@angular/cli": "^1.2.7",
+    "@angular/compiler-cli": "^4.3.3",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
     "angular-in-memory-web-api": "^0.2.4",
@@ -53,6 +53,7 @@
     "karma-jasmine": "^1.0.2",
     "protractor": "~5.1.0",
     "ts-node": "1.2.1",
-    "tslint": "^4.3.0"
+    "tslint": "^4.3.0",
+    "webpack": "^3.4.1"
   }
 }

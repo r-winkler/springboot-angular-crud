@@ -5,12 +5,13 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="nav navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/welcome']">{{welcome}}</a>
+        <a class="nav-link" [routerLink]="['/welcome']" i18n="@@welcomeHeader">Welcome</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/employee']">{{employees}}</a>
+        <a class="nav-link" [routerLink]="['/employee']" i18n="@@employeesHeader">Employees</a>
       </li>
     </ul>
+    <app-dropdown [values]=languages (valueChange)="changeLanguage($event)"></app-dropdown>
     <app-login></app-login>
   </div>
 </nav>

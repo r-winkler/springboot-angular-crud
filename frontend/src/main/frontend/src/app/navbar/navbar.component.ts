@@ -7,14 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  welcome: string;
-  employees: string;
+  languages : string[] = ['English','Spanish','German'];
 
   constructor() { }
 
   ngOnInit() {
-    this.welcome = "Welcome";
-    this.employees = "Employees";
+
   }
+
+  changeLanguage(language: String): void {
+    console.log(language);
+}
 
 }
