@@ -64,7 +64,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
     let onlyText = Validators.pattern('[a-zA-ZñÑáéíóúü\\-çÇ\\s]*');
 
-    this.employeeForm = this.fb.group({
+    this.employeeForm= this.fb.group({
       id: [],
       firstName: [, [Validators.required, Validators.minLength(3), onlyText]],
       lastName: [, [Validators.required, Validators.minLength(3), onlyText]],

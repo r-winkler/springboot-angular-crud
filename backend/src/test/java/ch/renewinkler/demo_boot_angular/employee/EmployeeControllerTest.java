@@ -1,9 +1,5 @@
 package ch.renewinkler.demo_boot_angular.employee;
 
-
-import ch.renewinkler.demo_boot_angular.employee.Employee;
-import ch.renewinkler.demo_boot_angular.employee.EmployeeController;
-import ch.renewinkler.demo_boot_angular.employee.EmployeeService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -21,9 +17,7 @@ import java.util.List;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -49,7 +43,7 @@ public class EmployeeControllerTest {
     String jsonEmployees;
 
     @Before
-    public void init() throws JsonProcessingException {
+    public void before() throws JsonProcessingException {
         employee1 = Employee.builder().id(1l).firstName("René").lastName("Winkler").age(32)
                 .profession("Software Engineer").fullTime(false).language("German").build();
         employee2 = Employee.builder().id(2l).firstName("Max").lastName("Muster").age(27)
