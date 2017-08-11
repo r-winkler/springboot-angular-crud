@@ -15,11 +15,15 @@ export class EmployeeComponent implements OnInit {
   errorMessage: string;
   employeeFilterMap: any = {};
   employeeFilter: IEmployeeFilter;
+  pageSize: string;
+  page: string;
 
   constructor(private _employeeService: EmployeeService, private _toastrService: ToastrService) {
   }
 
   ngOnInit() {
+    this.pageSize = '5';
+    this.page = '1';
     this.employeeFilter = this.initializeEmployeeFilter();
     this.getAllEmployees();
     this._toastrService.info("Employee page loaded.")

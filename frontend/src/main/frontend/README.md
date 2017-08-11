@@ -25,3 +25,16 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+# I18n
+
+See https://medium.com/@feloy/deploying-an-i18n-angular-app-with-angular-cli-fc788f17e358
+See https://github.com/angular/angular-cli/wiki/stories-internationalization
+
+1. ng xi18n --output-path src/locale --> generates messages.xlf
+2. Create and translate messages.xx.xlf manually
+3. npm run build
+
+In development, Angular can started bundled with only one specific language as follows :
+
+ng serve --aot --locale es --i18n-format xlf --i18n-file src/locale/messages.es.xlf

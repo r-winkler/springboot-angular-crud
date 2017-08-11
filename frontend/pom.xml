@@ -14,7 +14,7 @@
     <build>
         <resources>
             <resource>
-                <directory>target/frontend</directory>
+                <directory>src/main/frontend/dist</directory>
                 <targetPath>static</targetPath>
             </resource>
         </resources>

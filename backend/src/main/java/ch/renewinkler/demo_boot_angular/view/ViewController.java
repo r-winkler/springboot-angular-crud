@@ -1,6 +1,7 @@
 package ch.renewinkler.demo_boot_angular.view;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -15,8 +16,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ViewController {
 
-    @RequestMapping({"/welcome"})
+    @GetMapping({"/welcome"})
     public String index() {
         return "forward:/index.html";
+    }
+
+    @GetMapping({"/en"})
+    public String indexEnglish() {
+        return "forward:/en/index.html";
+    }
+
+    @GetMapping({"/es"})
+    public String indexSpanish() {
+        return "forward:/es/index.html";
+    }
+
+    @GetMapping({"/de"})
+    public String indexGerman() {
+        return "forward:/de/index.html";
+    }
+
+    @GetMapping({"/*"})
+    public String indexDefault() {
+        return indexEnglish();
     }
 }

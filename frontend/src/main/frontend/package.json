@@ -5,11 +5,17 @@
   "angular-cli": {},
   "scripts": {
     "start": "ng serve --proxy-config proxy.conf.json",
+    "start-es": "ng serve --proxy-config proxy.conf.json --aot --locale es --i18n-format xlf --i18n-file src/locale/messages.es.xlf",
+    "start-de": "ng serve --proxy-config proxy.conf.json --aot --locale de --i18n-format xlf --i18n-file src/locale/messages.de.xlf",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
-    "build": "ng build"
+    "prebuild": "rimraf rm -rf dist",
+    "build": "npm run build-en && npm run build-es && npm run build-de",
+    "build-en": "ng build --aot --bh /en/ --output-path dist/en --locale en",
+    "build-es": "ng build --aot --bh /es/ --output-path dist/es --locale es --i18n-format xlf --i18n-file src/locale/messages.es.xlf",
+    "build-de": "ng build --aot --bh /de/ --output-path dist/de --locale de --i18n-format xlf --i18n-file src/locale/messages.de.xlf"
   },
   "private": true,
   "dependencies": {
@@ -52,6 +58,7 @@
     "karma-coverage-istanbul-reporter": "^0.2.0",
     "karma-jasmine": "^1.0.2",
     "protractor": "~5.1.0",
+    "rimraf": "^2.6.1",
     "ts-node": "1.2.1",
     "tslint": "^4.3.0",
     "webpack": "^3.4.1"

@@ -1,5 +1,6 @@
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
@@ -11,7 +12,10 @@
         <a class="nav-link" [routerLink]="['/employee']" i18n="@@employeesHeader">Employees</a>
       </li>
     </ul>
-    <app-dropdown [values]=languages (valueChange)="changeLanguage($event)"></app-dropdown>
+    <ng-template ngFor let-lang [ngForOf]="languages">
+      <span *ngIf="lang.code !== localeId"><a href="/{{lang.code}}/">{{lang.label}}</a></span>
+      <span *ngIf="lang.code === localeId">{{lang.label}} </span>
+    </ng-template>
     <app-login></app-login>
   </div>
 </nav>
