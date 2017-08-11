@@ -1,26 +1,24 @@
-import {Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
+import {Component, Inject, LOCALE_ID} from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
-  languages = [
-    { code: 'en', label: 'English'},
-    { code: 'es', label: 'Español'},
-    { code: 'de', label: 'Deutsch'}
-  ];
+  languages: Map<string, string> = new Map([['English', 'en'], ['Español', 'es'], ['Deutsch', 'de']]);
 
-  constructor(@Inject(LOCALE_ID) protected localeId: string) {}
+  selectedLanguage: string = 'English';
 
-  ngOnInit() {
-
+  constructor(@Inject(LOCALE_ID) protected localeId: string) {
   }
 
-  changeLanguage(language: String): void {
-    console.log(language);
-}
+  changeLanguage(language: string): void {
+    if (this.selectedLanguage != language) {
+      this.selectedLanguage = language;
+      window.location.href = window.location.host + "/" + this.languages.get(language);
+    }
+  }
 
 }

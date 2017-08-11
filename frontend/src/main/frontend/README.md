@@ -33,7 +33,9 @@ See https://github.com/angular/angular-cli/wiki/stories-internationalization
 
 1. ng xi18n --output-path src/locale --> generates messages.xlf
 2. Create and translate messages.xx.xlf manually
-3. npm run build
+3. mvn clean install on parent project
+4. start spring boot application and go to localhost:8080
+5. change language in application (note: changing language does only work when app was builded and running in spring boot!)
 
 In development, Angular can started bundled with only one specific language as follows :
 

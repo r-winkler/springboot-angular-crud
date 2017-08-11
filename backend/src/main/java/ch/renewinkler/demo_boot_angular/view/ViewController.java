@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ViewController {
 
+    @GetMapping({"/*"})
+    public String indexDefault() {
+        return "forward:/en/index.html";
+    }
+
     @GetMapping({"/welcome"})
     public String index() {
         return "forward:/index.html";
@@ -34,10 +39,5 @@ public class ViewController {
     @GetMapping({"/de"})
     public String indexGerman() {
         return "forward:/de/index.html";
-    }
-
-    @GetMapping({"/*"})
-    public String indexDefault() {
-        return indexEnglish();
     }
 }
